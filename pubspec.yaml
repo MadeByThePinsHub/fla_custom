@@ -1,0 +1,28 @@
+name: fla_custom
+description: A flarum application by Flutter.
+
+version: 1.0.3
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+  flutter: ">=1.20.0 <2.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+
+  # To use the latest core version, please comment out'ref'
+  # and use flutter pub upgrade to update.
+
+  core:
+    git:
+      url: https://github.com/flarum-flutter/core.git
+      # ref: 0.0.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+flutter:
+  uses-material-design: true
