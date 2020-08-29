@@ -13,14 +13,14 @@ dependencies:
   flutter_localizations:
     sdk: flutter
 
-  # To use the latest core version, please comment out'ref'
-  # and use flutter pub upgrade to update.
-
   core:
+    ## for debug,use local library
+    #path: ../core
     git:
       url: https://github.com/flarum-flutter/core.git
-      # ref: 0.0.1
-
+      ### To use the latest core version, please comment out'ref'
+      #### and use flutter pub upgrade to update.
+      ref: 0.0.2
 dev_dependencies:
   flutter_test:
     sdk: flutter

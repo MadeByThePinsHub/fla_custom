@@ -13,6 +13,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:i18n/i18n.dart';
+import 'package:i18n/timeAgo.dart';
 import 'package:util/SystemUI.dart';
 import 'package:util/color.dart';
 
@@ -23,6 +24,7 @@ const siteUrl = "https://discuss.flarum.org";
 /// 👆👆👆 Set your website link here, that's it. 👆👆👆
 
 void main() {
+  TimeAgo.init();
   runApp(MainPage());
   SystemUI.setStatusBarColor(Colors.transparent, Brightness.light);
 }
@@ -108,41 +110,42 @@ class _MainPageState extends State<MainPage> {
                         : null,
                   ),
                   centerTitle: true,
-                  leading: IconButton(icon: Builder(
-                    builder: (BuildContext context) {
-                      if (Api.isLogin()) {
-                        return makeUserAvatarImage(initData.loggedUser,
-                            Theme.of(context).primaryColor, 26, 8);
-                      }
-                      return Icon(
-                        Icons.account_circle,
-                        color: textColor,
-                      );
+                  leading: IconButton(
+                    icon: Icon(Icons.keyboard_arrow_left),
+                    onPressed: (){
+                      //Navigator.pop(context);
+                      SystemChannels.platform.invokeMethod('SystemNavigator.pop');
                     },
-                  ), onPressed: () {
-                    if (initData.loggedUser != null) {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (BuildContext context) {
-                        return UserPage();
-                      }));
-                    } else {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (BuildContext context) {
-                        return LoginPage();
-                      })).then((ok) {
-                        if (ok != null && ok) {
-                          refreshUI();
-                        }
-                      });
-                    }
-                  }),
+                  ),
                   actions: <Widget>[
-                    PopupMenuButton(
-                      icon: Icon(Icons.keyboard_arrow_down),
-                      itemBuilder: (BuildContext context) {
-                        return [];
+                    IconButton(icon: Builder(
+                      builder: (BuildContext context) {
+                        if (Api.isLogin()) {
+                          return makeUserAvatarImage(initData.loggedUser,
+                              Theme.of(context).primaryColor, 26, 8);
+                        }
+                        return Icon(
+                          Icons.account_circle,
+                          color: textColor,
+                        );
                       },
-                    )
+                    ), onPressed: () {
+                      if (initData.loggedUser != null) {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (BuildContext context) {
+                              return UserPage();
+                            }));
+                      } else {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (BuildContext context) {
+                              return LoginPage();
+                            })).then((ok) {
+                          if (ok != null && ok) {
+                            refreshUI();
+                          }
+                        });
+                      }
+                    }),
                   ],
                 ),
                 body: AnimatedSwitcher(
