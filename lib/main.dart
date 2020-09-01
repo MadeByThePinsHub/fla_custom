@@ -19,7 +19,7 @@ import 'package:util/color.dart';
 
 /// 👇👇👇 Set your website link here, that's it. 👇👇👇
 
-const siteUrl = "https://discuss.flarum.org";
+const siteUrl = "https://clinux.co";
 
 /// 👆👆👆 Set your website link here, that's it. 👆👆👆
 
