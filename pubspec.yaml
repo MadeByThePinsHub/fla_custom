@@ -20,7 +20,7 @@ dependencies:
       url: https://github.com/fluam/core.git
       ### To use the latest core version, please comment out'ref'
       #### and use flutter pub upgrade to update.
-      ref: 0.0.2
+      ref: 0.0.3
 dev_dependencies:
   flutter_test:
     sdk: flutter
